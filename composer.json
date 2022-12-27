@@ -1,0 +1,12 @@
+{
+    "name": "panda/chatgpt-idle",
+    "require": {
+        "php": "^7.4",
+        "nunomaduro/ncursed": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MyProject\\": "src/"
+        }
+    }
+}
