@@ -2,7 +2,7 @@
     "name": "panda/chatgpt-idle",
     "require": {
         "php": "^7.4",
-        "nunomaduro/ncursed": "^4.0"
+        "symfony/console": "^5.4"
     },
     "autoload": {
         "psr-4": {

@@ -1,10 +1,19 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+declare(strict_types=1);
 
-$player = new MyProject\Model\Player();
-$tui = new Tui\Tui();
-$upgrades = new MyProject\Model\Upgrades();
+use MyProject\Model\GameCommand;
+use MyProject\Model\Player;
+use MyProject\Model\Upgrades;
+use Symfony\Component\Console\Application;
 
-$game = new MyProject\Model\Game($player, $tui, $upgrades);
-$game->play();
+require_once __DIR__.'/vendor/autoload.php';
+
+$player = new Player();
+$upgrades = new Upgrades();
+$gameCommand = new GameCommand($player, $upgrades);
+
+$application = new Application();
+$application->add($gameCommand);
+$application->setDefaultCommand($gameCommand->getName(), true);
+$application->run();

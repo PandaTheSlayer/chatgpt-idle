@@ -6,19 +6,21 @@ namespace MyProject\Model;
 
 class Upgrades
 {
-    private $upgradeSettings = [];
+    private $upgradeSettings;
+
+    public $boughtUpgrades = [];
 
     public function __construct()
     {
         $this->upgradeSettings = [
             'coin_rate' => [
-                'cost' => 100,
+                'cost' => 10,
                 'callback' => function (Player &$player) {
                     $player->coinRate *= 2;
                 },
             ],
             'autoclicker' => [
-                'cost' => 200,
+                'cost' => 20,
                 'callback' => function (Player &$player) {
                     $player->coinCount += $player->coinRate;
                 },
@@ -34,11 +36,11 @@ class Upgrades
         }
         $upgrade = $this->upgradeSettings[$upgradeName];
         if ($player->coinCount < $upgrade['cost']) {
-            echo "You don't have enough coins to buy this upgrade.\n";
-            return;
+            throw new \Exception("You don't have enough coins to buy this upgrade.\n");
         }
         $upgrade['callback']($player);
         $player->coinCount -= $upgrade['cost'];
+        $this->boughtUpgrades[] = $upgradeName;
     }
 
     public function listUpgrades(): array

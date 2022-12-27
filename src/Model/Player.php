@@ -6,12 +6,11 @@ namespace MyProject\Model;
 
 class Player
 {
-    public int $coinCount;
-    public int $coinRate;
+    public int $coinCount = 0;
+    public int $coinRate = 1;
 
-    public function __construct()
+    public function addCoins(int $coins): void
     {
-        $this->coinCount = 0;
-        $this->coinRate = 1;
+        $this->coinCount += $coins;
     }
 }

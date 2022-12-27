@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
+namespace MyProject\Model;
+
 use MyProject\Model\Player;
 use MyProject\Model\Upgrades;
+use Symfony\Component\Console\Application;
 use Tui\Tui;
 use Tui\Widgets\Text;
 use Tui\Widgets\Input;
@@ -13,10 +16,10 @@ use Tui\Widgets\Spinner;
 class Game
 {
     private Player $player;
-    private Tui $tui;
+    private Application $tui;
     private Upgrades $upgrades;
 
-    public function __construct(Player $player, Tui $tui, Upgrades $upgrades)
+    public function __construct(Player $player, Application $tui, Upgrades $upgrades)
     {
         $this->player = $player;
         $this->tui = $tui;
@@ -26,6 +29,7 @@ class Game
     public function play(): void
     {
         while (true) {
+            $this->tui->
             $this->tui->clear();
             $this->tui->add(new Text("Coins: {$this->player->coinCount}"));
             $this->tui->add(new Text("Coin rate: {$this->player->coinRate} coins/second"));
